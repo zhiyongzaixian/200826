@@ -1,0 +1,10 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#f0f",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "尚硅谷"
+  }
+}
