@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    msg: '测试数据'
+    msg: '测试数据',
+    userInfo: {}, // 用户基本信息
   },
 
   /**
@@ -24,6 +25,21 @@ Page({
   
     //   console.log(this.data.msg)
     // }, 2000)
+
+    // 获取用户信息-  用户授权以后
+    wx.getUserInfo({
+      success: (res) => {
+        console.log(res, '获取用户信息成功')
+
+        // 修改用户状态数据
+        this.setData({
+          userInfo: res.userInfo
+        })
+      },
+      fail: () => {
+        console.log('获取用户信息失败')
+      }
+    })
   },
 
   handleParent(){
@@ -43,6 +59,18 @@ Page({
     })
   },
 
+  // 获取用户信息的回调
+  handleGetUserInfo(res){
+    // console.log('用户点击了。。。')
+    console.log(res);
+    if(res.detail.userInfo){
+      // 用户点击的允许
+      // 更新用户信息
+      this.setData({
+        userInfo: res.detail.userInfo
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
