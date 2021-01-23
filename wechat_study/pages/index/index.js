@@ -5,14 +5,24 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    msg: '测试数据'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log('onLoad')
 
+    // 修改状态数据
+    // Vue React 小程序（this.setData）
+    setTimeout(() => {
+      this.setData({
+        msg: '修改之后的数据'
+      })
+  
+      console.log(this.data.msg)
+    }, 2000)
   },
 
   /**
