@@ -1,46 +1,18 @@
-// pages/index/index.js
+// pages/logs/logs.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    msg: '测试数据'
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log('onLoad')
-    // console.log(window)
 
-    // // 修改状态数据
-    // // Vue React 小程序（this.setData）
-    // setTimeout(() => {
-    //   this.setData({
-    //     msg: '修改之后的数据'
-    //   })
-  
-    //   console.log(this.data.msg)
-    // }, 2000)
-  },
-
-  handleParent(){
-    console.log('父')
-  },
-
-  handleChild(){
-    console.log('子')
-    
-  },
-
-  // 跳转至logs页面
-  toLogs(){
-    // 跳转至logs页面
-    wx.reLaunch({
-      url: '/pages/logs/logs',
-    })
   },
 
   /**
