@@ -1,0 +1,12 @@
+/* pages/index/index.wxss */
+
+/* 轮播图区域 */
+.banners {
+  width: 100%;
+  height: 300rpx;
+}
+
+.banners image {
+  width: 100%;
+  height: 100%;
+}
