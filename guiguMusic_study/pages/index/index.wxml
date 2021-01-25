@@ -35,13 +35,7 @@
   <!-- 推荐歌曲 -->
   <view class="recommendContainer">
     <!-- 头部区域 -->
-    <view class="header">
-      <view class="title">推荐歌曲</view>
-      <view class="nav">
-        <text>为你精心推荐</text>
-        <text class="more">查看更多</text>
-      </view>
-    </view>
+    <NavHeader title='推荐歌曲' nav='为你精心推荐'></NavHeader>
     <!-- 内容区 -->
     <scroll-view class="recommendScroll" enable-flex scroll-x>
       <view class="scrollItem" wx:for="{{recommendList}}" wx:key='id'>
@@ -49,5 +43,54 @@
         <text>{{item.name}}</text>
       </view>
     </scroll-view>
+  </view>
+
+  <!-- 排行榜区域 -->
+  <view class="topList">
+    <!-- 头部区域 -->
+    <NavHeader title='排行榜' nav='热歌风向标'></NavHeader>
+    <!-- 内容区 -->
+    <swiper class="topListSwiper" next-margin='50rpx'>
+      <swiper-item>
+        <view class="swiperItem">
+          <view class="title">飙升榜</view>
+          <view class="musicItem">
+            <image src="/static/images/nvsheng.jpg"></image>
+            <text class="order">1</text>
+            <text>光辉岁月</text>
+          </view>
+          <view class="musicItem">
+            <image src="/static/images/nvsheng.jpg"></image>
+            <text class="order">2</text>
+            <text>海阔天空</text>
+          </view>
+          <view class="musicItem">
+            <image src="/static/images/nvsheng.jpg"></image>
+            <text class="order">3</text>
+            <text>真的爱你</text>
+          </view>
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <view class="swiperItem">
+          <view class="title">飙升榜</view>
+          <view class="musicItem">
+            <image src="/static/images/nvsheng.jpg"></image>
+            <text class="order">1</text>
+            <text>光辉岁月</text>
+          </view>
+          <view class="musicItem">
+            <image src="/static/images/nvsheng.jpg"></image>
+            <text class="order">2</text>
+            <text>海阔天空</text>
+          </view>
+          <view class="musicItem">
+            <image src="/static/images/nvsheng.jpg"></image>
+            <text class="order">3</text>
+            <text>真的爱你</text>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
   </view>
 </view>

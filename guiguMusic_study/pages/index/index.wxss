@@ -43,21 +43,11 @@
 .recommendContainer {
   padding: 20rpx;
 }
-.recommendContainer .header  .title {
-  font-size: 28rpx;
-  color: #333;
-}
-.recommendContainer .header .more {
-  float: right;
-  border: 1rpx solid #333;
-  padding: 10rpx 20rpx;
-  border-radius: 20rpx;
-  font-size: 24rpx;
-}
 
 
 .recommendScroll {
   display: flex;
+  height: 300rpx;
 }
 
 .scrollItem {
@@ -85,4 +75,41 @@
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+}
+
+
+/* 排行榜区域 */
+.topList {
+  padding: 20rpx;
+}
+
+/* 排行榜轮播图区域 */
+.topListSwiper{
+  height: 440rpx;
+}
+
+.swiperItem{
+  background: #fbfbfb;
+  width: 97%;
+}
+
+.swiperItem .title {
+  font-size: 32rpx;
+  line-height: 90rpx;
+}
+.musicItem  {
+  height: 100rpx;
+  line-height: 100rpx;
+  /* 当一个元素设置为flex盒模型以后其子元素会自动转换成block */
+  display: flex;
+  margin-bottom: 20rpx;
+}
+.musicItem image {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.musicItem .order {
+  width: 100rpx;
+  text-align: center;
 }
