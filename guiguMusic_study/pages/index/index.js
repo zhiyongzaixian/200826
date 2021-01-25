@@ -1,4 +1,4 @@
-// pages/index/index.js
+import request from '../../utils/request'
 Page({
 
   /**
@@ -12,22 +12,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // 发请求获取数据
-    wx.request({
-      url: 'http://localhost:3000/banner',
-      data: {type: 2},
-      success: (res) => {
-        // console.log(res, '请求成功')
-        console.log(res.data)
+    this.getInitData();
+  },
 
-        // 更新banners状态数据
-        this.setData({
-          banners: res.data.banners
-        })
-      },
-      fail: (err) => {
-        console.log('请求失败', err)
-      }
+  // 封装获取初始化数据函数
+  async getInitData(){
+    // 发请求获取数据
+    let result = await request('http://localhost:3000/banner', {type: 2})
+    // 修改banners数据
+    this.setData({
+      banners: result.banners
     })
   },
 
