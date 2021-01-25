@@ -6,7 +6,7 @@
     <text catchtap='handleChild'>开启小程序之旅</text>
   </view> -->
 
-
+  <view>{{msg}}</view>
   <view class="goStudy" catchtap='toLogs'>
     <text >开启小程序之旅</text>
   </view>

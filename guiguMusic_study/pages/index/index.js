@@ -6,6 +6,7 @@ Page({
    */
   data: {
     banners: [], // 轮播图的数据
+    recommendList: [], // 推荐歌曲
   },
 
   /**
@@ -18,10 +19,17 @@ Page({
   // 封装获取初始化数据函数
   async getInitData(){
     // 发请求获取数据
-    let result = await request('http://localhost:3000/banner', {type: 2})
+    let result = await request('/banner', {type: 2})
     // 修改banners数据
     this.setData({
       banners: result.banners
+    })
+
+    // 获取推荐歌曲数据
+    result = await request('/personalized')
+    // 修改recommendList数据
+    this.setData({
+      recommendList: result.result
     })
   },
 

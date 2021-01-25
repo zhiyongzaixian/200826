@@ -22,13 +22,15 @@
     }
 
 */ 
+
+import config from './config';
 // 封装发送ajax请求的功能函数
 export default (url, data={}, method='GET') => {
   return new Promise((resolve, reject) => {
     // 1. 初始化promise状态为pending
     // 2. 执行异步任务
     wx.request({
-      url,
+      url: config.host + url,
       data,
       method,
     // 3. 根据异步任务的结果修改promise的状态
