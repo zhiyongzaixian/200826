@@ -51,46 +51,17 @@
     <NavHeader title='排行榜' nav='热歌风向标'></NavHeader>
     <!-- 内容区 -->
     <swiper class="topListSwiper" next-margin='50rpx'>
-      <swiper-item>
+      <swiper-item wx:for='{{topList}}' wx:key='name'>
         <view class="swiperItem">
-          <view class="title">飙升榜</view>
-          <view class="musicItem">
-            <image src="/static/images/nvsheng.jpg"></image>
-            <text class="order">1</text>
-            <text>光辉岁月</text>
-          </view>
-          <view class="musicItem">
-            <image src="/static/images/nvsheng.jpg"></image>
-            <text class="order">2</text>
-            <text>海阔天空</text>
-          </view>
-          <view class="musicItem">
-            <image src="/static/images/nvsheng.jpg"></image>
-            <text class="order">3</text>
-            <text>真的爱你</text>
+          <view class="title">{{item.name}}</view>
+          <view class="musicItem" wx:for='{{item.tracks}}' wx:key='id' wx:for-item='musicItem'>
+            <image src="{{musicItem.al.picUrl}}"></image>
+            <text class="order">{{index + 1}}</text>
+            <text>{{musicItem.name}}</text>
           </view>
         </view>
       </swiper-item>
-      <swiper-item>
-        <view class="swiperItem">
-          <view class="title">飙升榜</view>
-          <view class="musicItem">
-            <image src="/static/images/nvsheng.jpg"></image>
-            <text class="order">1</text>
-            <text>光辉岁月</text>
-          </view>
-          <view class="musicItem">
-            <image src="/static/images/nvsheng.jpg"></image>
-            <text class="order">2</text>
-            <text>海阔天空</text>
-          </view>
-          <view class="musicItem">
-            <image src="/static/images/nvsheng.jpg"></image>
-            <text class="order">3</text>
-            <text>真的爱你</text>
-          </view>
-        </view>
-      </swiper-item>
+    
     </swiper>
   </view>
 </view>
