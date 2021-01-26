@@ -1,4 +1,4 @@
-
+import request from '../../utils/request.js'
 let startY = 0; // 手指起始坐标
 let moveY = 0; // 手指移动实时的坐标
 let moveDistance = 0; // 手指移动的距离
@@ -12,6 +12,7 @@ Page({
     coverTransform: 'translateY(0)',
     coverTranstion: '',
     userInfo: {}, // 用户信息
+    recentPlayList: [], // 用户播放记录
   },
 
   /**
@@ -25,8 +26,26 @@ Page({
       this.setData({
         userInfo
       })
+
+      // 发请求获取用户播放记录
+      this.getRecentPlayData(this.data.userInfo.userId);
     }
 
+  },
+
+  // 获取用户播放记录功能函数
+  async getRecentPlayData(userId){
+    let result = await request('/user/record', {uid: userId, type: 0});
+    let index = 0;
+    let recentPlayList = result.allData.slice(0, 10).map(item => {
+      item.id = index++;
+      return item;
+    });
+
+
+    this.setData({
+      recentPlayList
+    })
   },
 
   // 手指点击事件

@@ -212,3 +212,15 @@
   float: right;
 }
 
+.recentScroll {
+  height: 200rpx;
+  display: flex;
+}
+.recentItem  {
+  margin-right: 20rpx;
+}
+.recentItem image {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 10rpx;
+}
