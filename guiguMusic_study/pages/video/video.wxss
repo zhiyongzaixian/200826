@@ -1,1 +1,54 @@
 /* pages/video/video.wxss */
+
+.videoContainer .header {
+  display: flex;
+  padding: 10rpx;
+}
+
+.videoContainer .header image {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.videoContainer .header .search {
+  border: 1rpx solid #eee;
+
+  /* 
+    
+    flex-grow: 可拉伸 0 flex-shrink 可压缩 1 flex-basis当前元素的宽度 auto
+    flex: 1; ---> flex-grow: 1; flex-shrink: 1; flex-basis: 0%;
+    flex: auto: ---> flex-grow: 1; flex-shrink: 1; flex-basis: auto;
+    flex: 1;会导致父元素的宽度自动成为100%；
+  */
+  flex: 1;
+  margin: 0 20rpx;
+  text-align: center;
+  color: #d43c33;
+  font-size: 26rpx;
+  line-height: 60rpx;
+}
+
+
+
+/* 导航区域 */
+.navScroll {
+  display: flex;
+  white-space: nowrap;
+  height: 60rpx;
+}
+
+.navScroll .navItem{
+  padding:0 30rpx;
+  font-size: 28rpx;
+  line-height: 60rpx;
+  height: 60rpx;
+}
+
+.navContent {
+  height: 60rpx;
+  box-sizing: border-box;
+}
+
+.navContent.active {
+  border-bottom: 1rpx solid #d43c33;
+}
