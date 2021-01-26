@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/login/login",
+
     "pages/personal/personal",
     "pages/index/index",
-    
     "pages/video/video"
   ],
   "window": {
@@ -34,6 +35,6 @@
         "iconPath": "/static/images/tabs/tab-my.png",
         "selectedIconPath": "/static/images/tabs/tab-my-current.png"
       }
-  ]
+    ]
   }
-} 
+}
