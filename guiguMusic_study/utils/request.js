@@ -33,9 +33,16 @@ export default (url, data={}, method='GET') => {
       url: config.host + url,
       data,
       method,
+      header: {
+        cookie: wx.getStorageSync('cookies')?wx.getStorageSync('cookies').toString():''
+      },
     // 3. 根据异步任务的结果修改promise的状态
       success: (res) => {
-        // console.log(res.data)
+        // 登录请求，将用户cookie保存至本地
+        if(data.isLogin){
+          wx.setStorageSync('cookies', res.cookies)
+        }
+
         resolve(res.data); // 修改promise状态为成功状态resolved
       },
       fail: (err) => {

@@ -34,7 +34,7 @@ Page({
 
   // 表单项事件的回调
   handleInput(event){
-    console.log(event);
+    // console.log(event);
     // let type = event.currentTarget.id; // id 适合传唯一标识
     let type = event.currentTarget.dataset.type; // data-key=value 适合传多个值
     this.setData({
@@ -91,7 +91,7 @@ Page({
     }
 
     // 后端验证
-    let result = await request('/login/cellphone', {phone, password}); 
+    let result = await request('/login/cellphone', {phone, password, isLogin: true}); 
     // 200, 400, 502
     if(result.code === 200){
       // 登录成功
