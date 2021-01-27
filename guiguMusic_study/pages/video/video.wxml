@@ -30,6 +30,8 @@
        poster='{{item.data.coverUrl}}'
        class="common"
        wx:if='{{videoId === item.data.vid}}'
+       bindtimeupdate='handleTimeUpdate'
+       bindended='handleEnded'
        ></video>
        <image wx:else id="{{item.data.vid}}" bindtap="handlePlay" class="common" src="{{item.data.coverUrl}}"></image>
 
