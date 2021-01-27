@@ -8,6 +8,7 @@ Page({
     videoGroupList: [], // 导航标签数据
     navId: '', // 导航标签的id标识
     videoList: [], // 视频列表数据
+    videoId: '', // video标识
   },
 
   /**
@@ -35,6 +36,9 @@ Page({
   // 获取视频列表数据的功能函数
   async getVideoList(navId){
     let videoListData = await request('/video/group', {id: navId});
+    if(!videoListData.datas){
+      return;
+    }
     // 更新 videoList 状态数据
     let index = 0;
     let videoList = videoListData.datas.map(item => {
@@ -80,7 +84,6 @@ Page({
 
   // 点击播放/继续播放的回调
   handlePlay(event){
-    console.log('play()')
 
     /*
       需求： 
@@ -96,16 +99,25 @@ Page({
     let vid = event.currentTarget.id;
 
     // this.videoContext // undefined || 某一个视频的上下文对象
-    this.videoContext && this.vid !== vid  && this.videoContext.stop();
+
+    // 解决多个视频同时播放的问题
+    // this.videoContext && this.vid !== vid  && this.videoContext.stop();
 
     // if(this.videoContext){
     //   if(this.vid !== vid){
     //     this.videoContext.stop();
     //   }
     // }
-    this.vid = vid;
+    // this.vid = vid;
+
+    // 将当前点击的vid更新至data中videoId
+    this.setData({
+      videoId: vid
+    })
     // 创建视频的上下文对象
     this.videoContext = wx.createVideoContext(vid);
+    // 播放当前视频
+    this.videoContext.play();
     // videoContext.stop();
   },
   /**

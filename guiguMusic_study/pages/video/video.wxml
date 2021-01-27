@@ -27,7 +27,11 @@
        object-fit='cover'
        bindplay='handlePlay'
        id='{{item.data.vid}}'
+       poster='{{item.data.coverUrl}}'
+       class="common"
+       wx:if='{{videoId === item.data.vid}}'
        ></video>
+       <image wx:else id="{{item.data.vid}}" bindtap="handlePlay" class="common" src="{{item.data.coverUrl}}"></image>
 
 
 

@@ -48,7 +48,6 @@
   position: relative;
   display: flex;
   flex-direction: column;
-// background: linear-gradient(left, red, black);
   background: rgba(0, 0, 0, .7);
   height: 240rpx;
   color: #f7d680;
