@@ -20,7 +20,14 @@
   </scroll-view>
 
   <!-- 视频列表区域 -->
-  <scroll-view class="videoScroll">
+  <scroll-view
+   class="videoScroll" 
+   scroll-y
+   refresher-enabled
+   bindrefresherrefresh='handleRefresher'
+   refresher-triggered='{{isTriggered}}'
+   bindscrolltolower='handleToLower'
+   >
     <view class="videoItem" wx:for="{{videoList}}" wx:key='id'>
       <video
        src="{{item.data.urlInfo.url}}"

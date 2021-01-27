@@ -57,6 +57,8 @@
 /* 视频列表区域 */
 .videoScroll{
   margin-top: 20rpx;
+  /* vh vw 视口单位， 1vh = 1%视口高度 */
+  height: calc(100vh - 100rpx);
 }
 .videoItem{
   padding: 0 3%;
