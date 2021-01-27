@@ -11,63 +11,9 @@
 
   <!-- 导航区域 -->
   <scroll-view scroll-x enable-flex class='navScroll'>
-    <view class="navItem">
-      <view class="navContent active">
-        现场
-      </view>
-    </view>
-    <view class="navItem">
-      <view class="navContent active">
-        万有引力
-      </view>
-    </view>
-    <view class="navItem">
-      <view class="navContent">
-        现场
-      </view>
-    </view>
-    <view class="navItem">
-      <view class="navContent">
-        万有引力
-      </view>
-    </view>
-    <view class="navItem">
-      <view class="navContent">
-        现场
-      </view>
-    </view>
-    <view class="navItem">
-      <view class="navContent">
-        万有引力
-      </view>
-    </view>
-    <view class="navItem">
-      <view class="navContent">
-        现场
-      </view>
-    </view>
-    <view class="navItem">
-      <view class="navContent">
-        万有引力
-      </view>
-    </view><view class="navItem">
-      <view class="navContent">
-        现场
-      </view>
-    </view>
-    <view class="navItem">
-      <view class="navContent">
-        万有引力
-      </view>
-    </view>
-    <view class="navItem">
-      <view class="navContent">
-        现场
-      </view>
-    </view>
-    <view class="navItem">
-      <view class="navContent">
-        万有引力
+    <view class="navItem" wx:for="{{videoGroupList}}" wx:key='id'>
+      <view class="{{navId === item.id?'active':''}} navContent" bindtap="changeNav" id="{{item.id}}" data-id='{{item.id}}'>
+        {{item.name}}
       </view>
     </view>
 
