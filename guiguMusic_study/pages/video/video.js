@@ -41,6 +41,9 @@ Page({
         item.id = index++;
         return item;
     })
+
+    // 关闭消息提示框
+    wx.hideLoading();
     this.setData({
       videoList
     })
@@ -63,10 +66,48 @@ Page({
     //   000000 00
     // console.log(num >>> 2) // 0
     this.setData({
-      navId: navId>>>0
+      navId: navId>>>0,
+      videoList: [], 
     })
+    // 显示正在加载
+    wx.showLoading({
+      title: '正在加载',
+    })
+    // 获取最新的视频列表数据
+    this.getVideoList(this.data.navId);
   },
 
+
+  // 点击播放/继续播放的回调
+  handlePlay(event){
+    console.log('play()')
+
+    /*
+      需求： 
+        1. 当播放新的视频的时候关掉之前播放的视频
+      思路： 
+        1. 找到关闭视频的方法 wx.createVideoContext(string id, Object this)
+        2. 必须找到上一个视频的实例对象，然后关掉
+      设计模式： 单例模式 
+        1. 需要创建多个对象的情况下，使用一个变量来保存，始终只有一个对象
+        2. 当创建新的对象的时候就会把之前的对象覆盖掉
+        3. 节省内存空间
+    */ 
+    let vid = event.currentTarget.id;
+
+    // this.videoContext // undefined || 某一个视频的上下文对象
+    this.videoContext && this.vid !== vid  && this.videoContext.stop();
+
+    // if(this.videoContext){
+    //   if(this.vid !== vid){
+    //     this.videoContext.stop();
+    //   }
+    // }
+    this.vid = vid;
+    // 创建视频的上下文对象
+    this.videoContext = wx.createVideoContext(vid);
+    // videoContext.stop();
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
