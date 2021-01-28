@@ -24,8 +24,16 @@
   top: -40rpx;
   width: 192rpx;
   height: 274rpx;
+  /* border: 1rpx solid red; */
+  transform-origin: 40rpx 0;
+  transform: rotate(-20deg);
+  transition: transform 1s;
 }
 
+
+.needloRotate {
+  transform: rotate(0deg);
+}
 /* 磁盘 */
 .discContainer {
   position: relative;
@@ -33,6 +41,39 @@
   width: 598rpx;
   height: 598rpx;
   
+}
+
+
+.discAnimation {
+  /* 动画属性 */
+  animation: disc 4s linear infinite;
+  animation-delay: 1s;
+}
+
+
+/* 
+
+  @keyframes: 动画帧数
+    1. from to 
+      1) 适用于简单的动画，该动画只有起始值和结束帧两帧
+      2) 北京 - 上海
+      3) 北京 - 上海 直达
+    2. 百分比
+      1) 适用于复杂的动画，动画可以是多帧
+      2) 取值范围： 0% - 100%
+      3) 北京 - 上海
+      4）北京 - 西安 - 重庆 - 深圳 - 上海
+*/
+
+
+@keyframes disc {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .discContainer .disc {
@@ -50,4 +91,29 @@
   width: 370rpx;
   height: 370rpx;
   border-radius: 50%;
+}
+
+
+/* 底部控制区域 */
+.musicControl {
+  position: absolute;
+  bottom: 40rpx;
+  left: 0;
+  border-top: 1rpx solid #fff;
+  width: 100%;
+  display: flex;
+
+}
+
+.musicControl  text {
+  width: 20%;
+  height: 120rpx;
+  line-height: 120rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 50rpx;
+}
+
+.musicControl  text.big{
+  font-size: 80rpx;
 }

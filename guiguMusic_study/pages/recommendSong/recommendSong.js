@@ -33,6 +33,17 @@ Page({
     })
   },
 
+  // 跳转至songDetail的回调
+  toSongDetail(event){
+    let song = event.currentTarget.dataset.song;
+    console.log(song);
+
+    // 路由跳转传参： query
+    wx.navigateTo({
+      url: '/pages/songDetail/songDetail?song=' + JSON.stringify(song),
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

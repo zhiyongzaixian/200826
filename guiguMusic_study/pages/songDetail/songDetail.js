@@ -5,13 +5,30 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    isPlay: false, // 标识音乐是否播放
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options);
+    // options: 用来接收路由跳转的参数，默认值是空对象
+    // JSON.parse 将json对象编译成js对象
+
+    // 注意！！！ 原生小程序url有长度限制，如果传参内容过长会自动截取掉
+    // console.log(options.song)
+    // let song = JSON.parse(options.song);
+
+  },
+
+  // 点击播放/暂停的回调
+  handleMusicPlay(){
+    let isPlay = !this.data.isPlay;
+    // 修改是否播放的状态
+    this.setData({
+      isPlay
+    })
 
   },
 
