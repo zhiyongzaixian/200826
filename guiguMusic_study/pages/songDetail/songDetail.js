@@ -67,6 +67,16 @@ Page({
       this.changeIsPlayState(false);
     });
 
+
+    // 订阅recommendSong页面发布的消息： musicId
+    PubSub.subscribe('musicId', (msg, musicId) => {
+      console.log('来自recommendSong页面发布的消息: ', musicId)
+
+      // 获取最新的音乐详情数据
+      this.getMusicInfo(musicId);
+    })
+
+
   },
   // 封装修改状态的功能函数
   changeIsPlayState(isPlay){
@@ -129,6 +139,8 @@ Page({
     // 获取切换歌曲的类型
     let type = event.currentTarget.id;
 
+    
+    
     // 将切换歌曲的类型发送给recommendSong页面
     PubSub.publish('switchType', type);
 
