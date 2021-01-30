@@ -1,4 +1,5 @@
 import PubSub from 'pubsub-js';
+import moment from 'moment';
 import request from '../../utils/request';
 
 // 获取全局app实例
@@ -15,6 +16,9 @@ Page({
     song: {}, // 歌曲详情对象
     musicId: '', // 音乐id标识
     musicLink: '', // 当前音乐播放链接
+    currentTime: '00:00', // 实时播放的时长
+    durationTime: '00:00', // 总时长
+    currentWidth: '0', // 实时进度条长度
   },
 
   /**
@@ -68,6 +72,33 @@ Page({
       this.changeIsPlayState(false);
     });
 
+    // 监听歌曲自然播放结束
+    this.backgroundAudioManager.onEnded(() => {
+      // 自动切换到下一首音乐，并且自动播放
+      // 将切换歌曲的类型发送给recommendSong页面
+      PubSub.publish('switchType', 'next');
+      // 还原状态
+      this.setData({
+        currentTime: '00:00', // 实时播放的时长
+        durationTime: '00:00', // 总时长
+        currentWidth: '0', // 实时进度条长度
+      })
+    });
+
+
+    // 监听音乐实时播放的进度
+    this.backgroundAudioManager.onTimeUpdate(() => {
+      // console.log('总时长： ', this.backgroundAudioManager.duration);
+      // console.log('实时播放的时长: ', this.backgroundAudioManager.currentTime);
+      // 格式化实时播放的时长
+      let currentTime = moment(this.backgroundAudioManager.currentTime*1000).format('mm:ss');
+      let currentWidth = this.backgroundAudioManager.currentTime/this.backgroundAudioManager.duration * 450;
+      this.setData({
+        currentTime,
+        currentWidth
+      })
+    });
+
 
     // 订阅recommendSong页面发布的消息： musicId
     PubSub.subscribe('musicId', (msg, musicId) => {
@@ -76,7 +107,7 @@ Page({
       // 获取最新的音乐详情数据
       this.getMusicInfo(musicId);
 
-      // 自动播放当前音乐
+      // 自动播放最新的音乐
       // let musicLink = this.data.musicLink;
       this.musicControl(true, musicId);
 
@@ -95,9 +126,11 @@ Page({
   // 封装获取音乐详情的功能函数
   async getMusicInfo(musicId){
     let songData = await request('/song/detail', {ids: musicId});
+    let durationTime = moment(songData.songs[0].dt).format('mm:ss');
     // 更新song详情对象
     this.setData({
-      song: songData.songs[0]
+      song: songData.songs[0],
+      durationTime
     })
 
     // 动态修改窗口的标题
@@ -123,14 +156,13 @@ Page({
       if(!musicLink){
         // 获取音乐播放地址
         let musicLinkData = await request('/song/url', {id: musicId});
-        let musicLink = musicLinkData.data[0].url;
+        musicLink = musicLinkData.data[0].url;
 
         // 将获取到的音乐链接更新到data中
         this.setData({
           musicLink
         })
       }
-     
       this.backgroundAudioManager.src = musicLink;
       this.backgroundAudioManager.title = this.data.song.name;
 
@@ -152,7 +184,8 @@ Page({
     // 获取切换歌曲的类型
     let type = event.currentTarget.id;
 
-    
+    // 停止当前音乐播放
+    this.backgroundAudioManager.stop();
     
     // 将切换歌曲的类型发送给recommendSong页面
     PubSub.publish('switchType', type);

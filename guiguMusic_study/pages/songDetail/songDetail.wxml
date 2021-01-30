@@ -8,7 +8,22 @@
   </view>
 
 
+  <!-- 进度条控制区域 -->
+  <view class="progressControl">
+    <text>{{currentTime}}</text>
+    <!-- 总进度条区域 -->
+    <view class="barControl">
+      <!-- 实时进度条 -->
+      <view class="audio-currentTime-bar" style='width: {{currentWidth + "rpx"}}'>
+        <!-- 小圆球 -->
+        <view class="audioCircle">
 
+        </view>
+      </view>
+    </view>
+    <text>{{durationTime}}</text>
+
+  </view>
 
 
 
