@@ -36,12 +36,15 @@ Page({
   // 跳转至songDetail的回调
   toSongDetail(event){
     let song = event.currentTarget.dataset.song;
-    console.log(song);
-
+    let musicId  = event.currentTarget.dataset.id;
     // 路由跳转传参： query
     wx.navigateTo({
-      url: '/pages/songDetail/songDetail?song=' + JSON.stringify(song),
+      // url: '/pages/songDetail/songDetail?song=' + JSON.stringify(song),
+      url: '/pages/songDetail/songDetail?musicId=' + musicId,
+
     })
+
+
   },
 
   /**

@@ -30,7 +30,6 @@
   transition: transform 1s;
 }
 
-
 .needloRotate {
   transform: rotate(0deg);
 }
