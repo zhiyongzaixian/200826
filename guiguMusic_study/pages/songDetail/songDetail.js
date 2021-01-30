@@ -1,4 +1,9 @@
-import request from '../../utils/request'
+import request from '../../utils/request';
+
+// 获取全局app实例
+let appInstance = getApp();
+
+
 Page({
 
   /**
@@ -16,6 +21,7 @@ Page({
   onLoad: function (options) {
     // console.log(options);
     /*
+
       options: 用来接收路由跳转的参数，默认值是空对象
       JSON.parse 将json对象编译成js对象
 
@@ -36,6 +42,37 @@ Page({
       musicId
     })
     this.getMusicInfo(musicId);
+
+    // 判断当前页面音乐是否在播放
+    if(appInstance.globalData.isMusicPlay && appInstance.globalData.musicId === musicId){
+      // 音乐在播放, 修改当前页面音乐的播放状态 为 true
+      this.setData({
+        isPlay: true
+      })
+
+    }
+
+    // 生成背景音频的实例
+    this.backgroundAudioManager = wx.getBackgroundAudioManager();
+    // 监听音乐播放/暂停/停止
+    this.backgroundAudioManager.onPlay(() => {
+      this.changeIsPlayState(true);
+      appInstance.globalData.musicId = musicId;
+    });
+    this.backgroundAudioManager.onPause(() => {
+      this.changeIsPlayState(false);
+    });
+    this.backgroundAudioManager.onStop(() => {
+      this.changeIsPlayState(false);
+    });
+
+  },
+  // 封装修改状态的功能函数
+  changeIsPlayState(isPlay){
+    this.setData({
+      isPlay
+    })
+    appInstance.globalData.isMusicPlay = isPlay;
   },
 
   // 封装获取音乐详情的功能函数
@@ -55,26 +92,33 @@ Page({
   handleMusicPlay(){
     let isPlay = !this.data.isPlay;
     // 修改是否播放的状态
-    this.setData({
-      isPlay
-    })
+    // this.setData({
+    //   isPlay
+    // })
     let {musicId} = this.data;
     this.musicControl(isPlay, musicId);
   },
 
   // 封装控制音乐播放/暂停的功能函数
   async musicControl(isPlay, musicId){
-     // 生成背景音频的实例
-    let backgroundAudioManager = wx.getBackgroundAudioManager();
+    
     if(isPlay){ // 播放音乐
       // 获取音乐播放地址
       let musicLinkData = await request('/song/url', {id: musicId});
       let musicLink = musicLinkData.data[0].url;
      
-      backgroundAudioManager.src = musicLink;
-      backgroundAudioManager.title = this.data.song.name;
+      this.backgroundAudioManager.src = musicLink;
+      this.backgroundAudioManager.title = this.data.song.name;
+
+      // 修改全局的播放状态
+      // appInstance.globalData.isMusicPlay = true;
+      // appInstance.globalData.musicId = musicId;
     }else { // 暂停音乐
-      backgroundAudioManager.pause();
+      this.backgroundAudioManager.pause();
+
+      // 修改全局的播放状态
+      // appInstance.globalData.isMusicPlay = false;
+      // appInstance.globalData.musicId = musicId;
     }
 
   },
