@@ -1,3 +1,4 @@
+import PubSub from 'pubsub-js';
 import request from '../../utils/request';
 
 // 获取全局app实例
@@ -120,6 +121,16 @@ Page({
       // appInstance.globalData.isMusicPlay = false;
       // appInstance.globalData.musicId = musicId;
     }
+
+  },
+
+  // 点击切换歌曲的回调
+  handleSwitch(event){
+    // 获取切换歌曲的类型
+    let type = event.currentTarget.id;
+
+    // 将切换歌曲的类型发送给recommendSong页面
+    PubSub.publish('switchType', type);
 
   },
 

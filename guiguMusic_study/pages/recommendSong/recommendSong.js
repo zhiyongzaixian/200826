@@ -1,3 +1,4 @@
+import PubSub from 'pubsub-js';
 import request from '../../utils/request'
 Page({
 
@@ -21,6 +22,11 @@ Page({
     })
 
     this.getRecommendList();
+
+    // 订阅songDetail发布的type消息
+    PubSub.subscribe('switchType', (msg, data) => {
+      console.log('来自songDetail发布的消息：', msg, data);
+    });
   },
 
   // 获取每日推荐recommendList数据的功能函数
