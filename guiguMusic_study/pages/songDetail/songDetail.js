@@ -14,6 +14,7 @@ Page({
     isPlay: false, // 标识音乐是否播放
     song: {}, // 歌曲详情对象
     musicId: '', // 音乐id标识
+    musicLink: '', // 当前音乐播放链接
   },
 
   /**
@@ -74,6 +75,11 @@ Page({
 
       // 获取最新的音乐详情数据
       this.getMusicInfo(musicId);
+
+      // 自动播放当前音乐
+      // let musicLink = this.data.musicLink;
+      this.musicControl(true, musicId);
+
     })
 
 
@@ -106,17 +112,24 @@ Page({
     // this.setData({
     //   isPlay
     // })
-    let {musicId} = this.data;
-    this.musicControl(isPlay, musicId);
+    let {musicId, musicLink} = this.data;
+    this.musicControl(isPlay, musicId, musicLink);
   },
 
   // 封装控制音乐播放/暂停的功能函数
-  async musicControl(isPlay, musicId){
+  async musicControl(isPlay, musicId, musicLink){
     
     if(isPlay){ // 播放音乐
-      // 获取音乐播放地址
-      let musicLinkData = await request('/song/url', {id: musicId});
-      let musicLink = musicLinkData.data[0].url;
+      if(!musicLink){
+        // 获取音乐播放地址
+        let musicLinkData = await request('/song/url', {id: musicId});
+        let musicLink = musicLinkData.data[0].url;
+
+        // 将获取到的音乐链接更新到data中
+        this.setData({
+          musicLink
+        })
+      }
      
       this.backgroundAudioManager.src = musicLink;
       this.backgroundAudioManager.title = this.data.song.name;
