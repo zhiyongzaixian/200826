@@ -1,5 +1,8 @@
 /* pages/recommendSong/recommendSong.wxss */
-
+@import '/static/iconfont/iconfont.wxss';
+page {
+  height: 100%;
+}
 /* 头部样式 */
 .header {
   position: relative;
