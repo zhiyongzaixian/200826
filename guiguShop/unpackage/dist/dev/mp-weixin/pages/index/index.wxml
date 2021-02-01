@@ -1,0 +1,1 @@
+<view class="indexContainer"><view class="header"><image class="logo" src="/static/images/logo.png" mode></image><view class="search"><input type="text" value="" placeholder="搜索商品" placeholder-class="placeholder"/></view><button>北方汉子</button></view></view>

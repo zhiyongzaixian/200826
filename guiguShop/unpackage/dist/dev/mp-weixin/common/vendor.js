@@ -7489,9 +7489,9 @@ module.exports = g;
 
 /***/ }),
 /* 4 */
-/*!*********************************************************************!*\
-  !*** C:/Users/13852/Desktop/北京200826课堂资料/代码/uniApp_demo/pages.json ***!
-  \*********************************************************************/
+/*!*******************************************************************!*\
+  !*** C:/Users/13852/Desktop/北京200826课堂资料/代码/guiguShop/pages.json ***!
+  \*******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8393,20 +8393,20 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 
 /***/ }),
 /* 7 */
-/*!**************************************************************************************!*\
-  !*** C:/Users/13852/Desktop/北京200826课堂资料/代码/uniApp_demo/pages.json?{"type":"style"} ***!
-  \**************************************************************************************/
+/*!************************************************************************************!*\
+  !*** C:/Users/13852/Desktop/北京200826课堂资料/代码/guiguShop/pages.json?{"type":"style"} ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "uni-app", "usingComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#f0f", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": {} }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarTitleText": "硅谷商城", "navigationBarBackgroundColor": "#BB2C08" } };exports.default = _default;
 
 /***/ }),
 /* 8 */
-/*!*************************************************************************************!*\
-  !*** C:/Users/13852/Desktop/北京200826课堂资料/代码/uniApp_demo/pages.json?{"type":"stat"} ***!
-  \*************************************************************************************/
+/*!***********************************************************************************!*\
+  !*** C:/Users/13852/Desktop/北京200826课堂资料/代码/guiguShop/pages.json?{"type":"stat"} ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

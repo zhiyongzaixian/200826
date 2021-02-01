@@ -1,0 +1,12 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "硅谷商城",
+    "navigationBarBackgroundColor": "#BB2C08"
+  },
+  "usingComponents": {}
+}

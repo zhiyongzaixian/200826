@@ -1,0 +1,15 @@
+{
+	"globalStyle" : {
+			"navigationBarTextStyle" : "white",
+			"navigationBarTitleText" : "硅谷商城",
+			"navigationBarBackgroundColor" : "#BB2C08"
+	},
+	"pages" : [
+		{
+			"path" : "pages/index/index",
+			"style" : {
+				
+			}
+		}
+	]
+}
