@@ -12,45 +12,38 @@
 	
 		<!-- 导航区域 -->
 		<scroll-view scroll-x="true" class="navScroll" enable-flex="true">
-			<view class="navItem active">
+			<view class="navItem " :class="{active: navIndex === -1}" @click="changeNav(-1)">
 				推荐
 			</view>
-			<view class="navItem">
-				居家生活
-			</view>
-			<view class="navItem">
-				推荐
-			</view>
-			<view class="navItem">
-				居家生活
-			</view>
-			<view class="navItem">
-				推荐
-			</view>
-			<view class="navItem">
-				居家生活
-			</view>
-			<view class="navItem">
-				推荐
-			</view>
-			<view class="navItem">
-				居家生活
-			</view><view class="navItem">
-				推荐
-			</view>
-			<view class="navItem">
-				居家生活
+			<view class="navItem " :class="{active: navIndex === index}" @click="changeNav(index)" v-for="(item, index) in indexData.kingKongModule.kingKongList" :key='item.L1Id'>
+				{{item.text}}
 			</view>
 		</scroll-view>
 	</view>
 </template>
 
 <script>
+	import request from '../../utils/request.js'
 	export default {
 		data() {
 			return {
-				
+				indexData: {},
+				navIndex: -1, // 导航的标识
 			};
+		},
+		mounted() {
+			this.getIndexData();
+		},
+		methods: {
+			async getIndexData(){
+				let result = await request('/getIndexData'); // 小程序
+				// let result = await request('/api/getIndexData'); // H5
+				this.indexData = result
+			},
+			// 点击导航的回调
+			changeNav(navIndex){
+				this.navIndex = navIndex
+			}
 		}
 	}
 </script>
