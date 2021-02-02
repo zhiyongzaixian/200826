@@ -1,0 +1,30 @@
+{
+	"privinces": [
+		{
+			"name": "河北省",
+			"id": 11
+		},
+		{
+			"name": "江苏省",
+			"id": 22
+		}
+	],
+	"cities": [
+		{
+			"name": "南京市",
+			"id": 235,
+			"parentId": 22
+		},
+		{
+			"name": "保定市",
+			"id": 345,
+			"parentId": 11
+		},
+		{
+			"name": "济南市",
+			"id": 567,
+			"parentId": 34
+		}
+	],
+	"counties": []
+}

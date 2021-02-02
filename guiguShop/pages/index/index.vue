@@ -12,17 +12,19 @@
 	
 		<!-- 导航区域 -->
 		<scroll-view scroll-x="true" class="navScroll" enable-flex="true" v-if="indexData.kingKongModule" >
-			<view class="navItem " :class="{active: navIndex === -1}" @click="changeNav(-1)">
+			<view class="navItem " :class="{active: navIndex === -1}" @click="changeNav(-1, 0)">
 				推荐
 			</view>
-			<view class="navItem " :class="{active: navIndex === index}" @click="changeNav(index)" v-for="(item, index) in indexData.kingKongModule.kingKongList" :key='item.L1Id'>
+			<view class="navItem " :class="{active: navIndex === index}" @click="changeNav(index, item.L1Id)" v-for="(item, index) in indexData.kingKongModule.kingKongList" :key='item.L1Id'>
 				{{item.text}}
 			</view>
 		</scroll-view>
 	
 		<!-- 内容区 -->
 		<scroll-view scroll-y="true" >
-			<Recommend></Recommend>
+			<!-- 推荐对应组件 -->
+			<Recommend v-if='!!!navId'></Recommend>
+			<CateList v-else :navId='navId'></CateList>
 		</scroll-view>
 	</view>
 </template>
@@ -31,14 +33,16 @@
 	import {mapActions, mapState} from 'vuex'
 	import request from '../../utils/request.js'
 	import Recommend from '../../components/Recommend/Recommend.vue'
+	import CateList from '../../components/CateList/CateList.vue'
 	export default {
 		components: {
-			Recommend
+			Recommend, CateList
 		},
 		data() {
 			return {
 				// indexData: {},
 				navIndex: -1, // 导航的标识
+				navId: 1, // 导航的id
 			};
 		},
 		mounted() {
@@ -61,8 +65,9 @@
 				this.indexData = result
 			},
 			// 点击导航的回调
-			changeNav(navIndex){
+			changeNav(navIndex, navId){
 				this.navIndex = navIndex
+				this.navId = navId
 			}
 		},
 		computed: {

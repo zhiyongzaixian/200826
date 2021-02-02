@@ -24,5 +24,12 @@ router.get('/getCategoryData', (ctx) => {
 	ctx.body = categoryDatas;
 });
 
+// 主页分类数据
+const indexCateList = require('../datas/indexCateList.json');
+router.get('/getIndexCateList', (ctx) => {
+	ctx.body = indexCateList;
+});
+
+
 // 向外暴露路由器对象
 module.exports = router;
