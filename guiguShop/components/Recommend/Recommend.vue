@@ -33,6 +33,22 @@
 				<text class="kingContent">{{item.text}}</text>
 			</view>
 		</view>
+		
+		<!-- categoryModule 分类区 -->
+		<view class="categoryModuleContainer">
+			<view class="categoryItem" v-for="item in indexData.categoryModule" :key='item.titlePicUrl'>
+				<image class="titlePic" :src="item.titlePicUrl" mode=""></image>
+				<scroll-view class="shopListScroll" scroll-x="true" enable-flex>
+					<view class="shopItem" v-for="shopItem in item.itemList" :key='shopItem.id'>
+						<image class="shopImg" :src="shopItem.showPicUrl" mode=""></image>
+						<view class="shopInfo">{{shopItem.name}}</view>
+					</view>
+					<view class="shopItem more" >
+						查看更多>
+					</view>
+				</scroll-view>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -85,6 +101,42 @@
 					margin 20rpx 0
 				.kingContent
 					font-size 26rpx
+
+		.categoryModuleContainer
+			.categoryItem
+				margin-bottom 20rpx
+				.titlePic
+					width 100%
+					height 370rpx
+				.shopListScroll
+					white-space nowrap
+					.shopItem
+						width 200rpx
+						display inline-block
+						vertical-align top
+						margin-right 20rpx
+						&.more
+							width 200rpx
+							height 200rpx
+							background #EEEEEE
+							font-size 28rpx
+							text-align center
+							line-height 200rpx
+						.shopImg 
+							width 200rpx
+							height 200rpx
+							background #eee
+						.shopInfo
+							font-size 26rpx
+							white-space pre-wrap
+							display -webkit-box
+							-webkit-line-clamp 2
+							-webkit-box-orient vertical
+							text-overflow ellipsis
+							overflow hidden
+						
+						
+					
 
 .test
 	font-size 0
