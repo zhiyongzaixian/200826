@@ -11,7 +11,7 @@
 		</view>
 	
 		<!-- 导航区域 -->
-		<scroll-view scroll-x="true" class="navScroll" enable-flex="true">
+		<scroll-view scroll-x="true" class="navScroll" enable-flex="true" v-if="indexData.kingKongModule" >
 			<view class="navItem " :class="{active: navIndex === -1}" @click="changeNav(-1)">
 				推荐
 			</view>
@@ -19,22 +19,35 @@
 				{{item.text}}
 			</view>
 		</scroll-view>
+	
+		<!-- 内容区 -->
 	</view>
 </template>
 
 <script>
+	import {mapActions, mapState} from 'vuex'
 	import request from '../../utils/request.js'
 	export default {
 		data() {
 			return {
-				indexData: {},
+				// indexData: {},
 				navIndex: -1, // 导航的标识
 			};
 		},
 		mounted() {
-			this.getIndexData();
+			// 测试获取store对象中的数据
+			// console.log(this.$store.state.home.initData)
+			// this.$store.dispatch('getIndexDataAction')
+			// this.getIndexData();
+			
+			// 分发action
+			this.getIndexDataAction()
 		},
 		methods: {
+			...mapActions({
+				// key: value, key:在当前组件定义的方法名, value是从store映射的函数名,注意:value不能随便写,必须是store中已有的action
+				getIndexDataAction: 'getIndexDataAction'
+			}),
 			async getIndexData(){
 				let result = await request('/getIndexData'); // 小程序
 				// let result = await request('/api/getIndexData'); // H5
@@ -44,6 +57,11 @@
 			changeNav(navIndex){
 				this.navIndex = navIndex
 			}
+		},
+		computed: {
+			...mapState({
+				indexData: state => state.home.indexData
+			})
 		}
 	}
 </script>
