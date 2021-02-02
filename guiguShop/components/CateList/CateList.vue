@@ -10,6 +10,16 @@
 		
 		<view class="title">{{cateObj.category.name}}</view>
 		<view class="desc">{{cateObj.category.frontDesc}}</view>
+		
+		
+		<!-- 内容列表区域 -->
+		<view class="shopList">
+			<view class="shopItem" v-for="(shopItem, index) in cateObj.itemList" :key='shopItem.id'>
+				<image class="shopImg" :src="shopItem.listPicUrl" mode=""></image>
+				<view class="shopInfo common">{{shopItem.name}}</view>
+				<view class="shopPrice common">{{shopItem.retailPrice}}</view>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -56,6 +66,26 @@
 			font-size 26rpx
 			text-align center
 			line-height 40rpx
-			
+		.shopList
+			display flex
+			flex-wrap wrap
+			justify-content space-around
+			&:after
+				content ''
+				width 344rpx
+			.shopItem
+				width 344rpx
+				.shopImg
+					width 344rpx
+					height 344rpx
+				.common
+					font-size 26rpx
+					line-height 50rpx
+					&.shopPrice
+						color red
+						font-weight bold
+					
+					
+				
 				
 </style>

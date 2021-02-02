@@ -8400,7 +8400,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "usingComponents": { "recommend": "/components/Recommend/Recommend", "cate-list": "/components/CateList/CateList" } }, "pages/category/category": { "navigationBarTitleText": "分类", "usingComponents": {} }, "pages/cart/cart": { "navigationBarTitleText": "购物车", "usingComponents": {} }, "pages/personal/personal": { "navigationBarTitleText": "个人中心", "usingComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarTitleText": "硅谷商城", "navigationBarBackgroundColor": "#BB2C08" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "usingComponents": { "recommend": "/components/Recommend/Recommend", "cate-list": "/components/CateList/CateList" } }, "pages/category/category": { "navigationBarTitleText": "分类", "usingComponents": {} }, "pages/cart/cart": { "navigationBarTitleText": "购物车", "usingComponents": {} }, "pages/personal/personal": { "navigationBarTitleText": "个人中心", "usingComponents": {} }, "pages/login/login": { "usingComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarTitleText": "硅谷商城", "navigationBarBackgroundColor": "#BB2C08" } };exports.default = _default;
 
 /***/ }),
 /* 8 */

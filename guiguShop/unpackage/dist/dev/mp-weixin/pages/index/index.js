@@ -166,7 +166,7 @@ var _request = _interopRequireDefault(__webpack_require__(/*! ../../utils/reques
     return {
       // indexData: {},
       navIndex: -1, // 导航的标识
-      navId: 1 // 导航的id
+      navId: 0 // 导航的id
     };
   },
   mounted: function mounted() {

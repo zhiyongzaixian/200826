@@ -6,6 +6,12 @@
 	},
 	"pages" : [
 		{
+			"path" : "pages/personal/personal",
+			"style" : {
+				"navigationBarTitleText" : "个人中心"
+			}
+		},
+		{
 			"path" : "pages/index/index",
 			"style" : {
 				
@@ -25,11 +31,10 @@
 				"navigationBarTitleText" : "购物车"
 			}
 		},
+		
 		{
-			"path" : "pages/personal/personal",
-			"style" : {
-				"navigationBarTitleText" : "个人中心"
-			}
+			"path" : "pages/login/login",
+			"style" : {}
 		}
 	],
 	"tabBar": {
