@@ -18,5 +18,11 @@ router.get('/getIndexData', (ctx) => {
 	ctx.body = indexData;
 });
 
+// 注册分类页数据
+const categoryDatas = require('../datas/categoryDatas.json');
+router.get('/getCategoryData', (ctx) => {
+	ctx.body = categoryDatas;
+});
+
 // 向外暴露路由器对象
 module.exports = router;

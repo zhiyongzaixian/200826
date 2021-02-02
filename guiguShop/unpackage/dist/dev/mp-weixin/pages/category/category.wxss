@@ -11,17 +11,19 @@
   margin: 0 auto;
 }
 .categoryContainer .contentContainer {
-  height: 800rpx;
+  height: calc(100vh - 80rpx);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  border-top: 1rpx solid #333;
+  border-top: 1rpx solid #eee;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 .categoryContainer .contentContainer .leftContainer {
   width: 20%;
   height: 100%;
-  border-right: 1rpx solid #333;
+  border-right: 1rpx solid #eee;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
@@ -29,14 +31,52 @@
   height: calc(100vh - 82rpx);
 }
 .categoryContainer .contentContainer .leftContainer .navScroll .navItem {
+  position: relative;
   font-size: 26rpx;
   height: 80rpx;
   line-height: 80rpx;
   text-align: center;
 }
+.categoryContainer .contentContainer .leftContainer .navScroll .navItem.active:before {
+  position: absolute;
+  top: 10rpx;
+  left: 6rpx;
+  content: '';
+  width: 2rpx;
+  height: 60rpx;
+  background: #bb2c08;
+}
 .categoryContainer .contentContainer .rightContainer {
   width: 80%;
   height: 100%;
-  background: #c0c0c0;
+}
+.categoryContainer .contentContainer .rightContainer .shopScroll {
+  height: calc(100vh - 82rpx);
+}
+.categoryContainer .contentContainer .rightContainer .shopScroll .cateImg {
+  width: 520rpx;
+  height: 190rpx;
+  display: block;
+  margin: 10rpx auto;
+}
+.categoryContainer .contentContainer .rightContainer .shopScroll .shopList {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+.categoryContainer .contentContainer .rightContainer .shopScroll .shopList .shopItem {
+  width: 33.333%;
+  text-align: center;
+}
+.categoryContainer .contentContainer .rightContainer .shopScroll .shopList .shopItem .shopImg {
+  height: 144rpx;
+  width: 90%;
+}
+.categoryContainer .contentContainer .rightContainer .shopScroll .shopList .shopItem .shopName {
+  font-size: 24rpx;
 }
 
