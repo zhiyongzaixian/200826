@@ -21,13 +21,20 @@
 		</scroll-view>
 	
 		<!-- 内容区 -->
+		<scroll-view scroll-y="true" >
+			<Recommend></Recommend>
+		</scroll-view>
 	</view>
 </template>
 
 <script>
 	import {mapActions, mapState} from 'vuex'
 	import request from '../../utils/request.js'
+	import Recommend from '../../components/Recommend/Recommend.vue'
 	export default {
+		components: {
+			Recommend
+		},
 		data() {
 			return {
 				// indexData: {},
