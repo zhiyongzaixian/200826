@@ -1,5 +1,6 @@
 const KoaRouter = require('koa-router');
-
+const Fly = require("flyio/src/node")
+const fly = new Fly;
 // 2. 生成路由器对象
 const router = new KoaRouter();
 // express: request response next
@@ -28,6 +29,23 @@ router.get('/getCategoryData', (ctx) => {
 const indexCateList = require('../datas/indexCateList.json');
 router.get('/getIndexCateList', (ctx) => {
 	ctx.body = indexCateList;
+});
+
+
+// 获取用户openId
+router.get('/getOpenId', async (ctx) => {
+	// 1. 接收请求参数
+	let code = ctx.query.code;
+	// 2. 整合数据对接微信服务器
+	let appId = 'wx810e8b1fde386fde';
+	let appSecret = '59c4a57fb7745d0cbe19f3a9289fa135';
+	// 3. 接收到微信服务器返回的数据，对当前用户数据进行自定义绑定，加密
+	let url = `https://api.weixin.qq.com/sns/jscode2session?appid=${appId}&secret=${appSecret}&js_code=${code}&grant_type=authorization_code`;
+	let result = await fly.get(url)
+	let openId = JSON.parse(result.data).openid;
+	console.log('openId: ', openId);
+	// 4. 返回给浏览器端当前用户加密后的标识
+	
 });
 
 

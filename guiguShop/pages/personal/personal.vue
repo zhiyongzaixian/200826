@@ -44,6 +44,7 @@
 </template>
 
 <script>
+	import request from '../../utils/request.js'
 	module.exports = {
 		data(){
 			return {
@@ -95,13 +96,26 @@
 			}
 		},
 		mounted(){
+			// 获取用户基本信息
 			wx.getUserInfo({
 				success: (res) => {
-					console.log(res)
+					// console.log(res)
 					this.userInfo = res.userInfo
 				},
 				fail: (err) => {
 					console.log('获取用户信息失败')
+				}
+			})
+			
+			
+			// 获取用户唯一标识openId
+			
+			// 1. 获取用户登录凭证code
+			wx.login({
+				success: async (res) => {
+					let code = res.code
+					// 2. 将code发请求发送给服务器端
+					let result = await request('/getOpenId', {code})
 				}
 			})
 		},

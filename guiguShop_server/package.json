@@ -2,11 +2,12 @@
   "name": "guiguShop_server",
   "version": "1.0.0",
   "dependencies": {
+    "flyio": "^0.6.14",
     "koa": "^2.13.1",
     "koa-router": "^10.0.0",
     "nodemon": "^2.0.7"
   },
-	"scripts": {
-		"start": "nodemon server.js"
-	}
+  "scripts": {
+    "start": "nodemon server.js"
+  }
 }
