@@ -15,7 +15,7 @@
 				<!-- 购物车列表 -->
 		<view class="cartList">
 			<view class="cartItem" v-for="(cartItem, index) in cartList" :key='cartItem.id'>
-				<text class='iconfont icon-xuanzhong ' :class="{selected: cartItem.isSelected}"></text>
+				<text class='iconfont icon-xuanzhong ' :class="{selected: cartItem.isSelected}" @click="changeSelected(!cartItem.isSelected, index)"></text>
 				<view class="shopItem">
 					<image class="shopImg" :src="cartItem.listPicUrl" mode=""></image>
 					<view class="shopInfo">
@@ -25,9 +25,9 @@
 				</view>
 				<!-- 控制数量 -->
 				<view class="countCtrl">
-					<text class="add" > + </text>
+					<text class="add" @click="changeCount(true, index)"> + </text>
 					<text class="count"> {{cartItem.count}} </text>
-					<text class="del"> - </text>
+					<text class="del" @click="changeCount(false, index)"> - </text>
 				</view>
 			</view>
 		</view>
@@ -48,7 +48,7 @@
 </template>
 
 <script>
-	import {mapState} from  'vuex'
+	import {mapState, mapMutations} from  'vuex'
 	export default {
 		data() {
 			return {
@@ -59,6 +59,20 @@
 			...mapState({
 				cartList: state => state.cart.cartList
 			})
+		},
+		methods: {
+			...mapMutations({
+				changeCountMutation: 'changeCountMutation',
+				changeIsSelectedMutation: 'changeIsSelectedMutation'
+			}),
+			// 修改数量
+			changeCount(isAdd, index){
+				this.changeCountMutation({isAdd, index})
+			},
+			// 修改是否选中的状态
+			changeSelected(isSelected, index){
+				this.changeIsSelectedMutation({isSelected, index})
+			}
 		}
 	}
 </script>

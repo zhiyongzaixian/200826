@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 // 管理购物车数据
 const state = {
 	cartList: [
@@ -170,12 +172,48 @@ const mutations = {
 		
 		if(shopObj){ // 购物车已有该商品
 			shopObj.count += 1
+			console.log(shopObj.count)
 		}else { // 购物车没有改商品
-			shopItem.count = 1
-			shopItem.isSelected = true
+		
+			// 非响应式数据
+			// shopItem.count = 1
+			// shopItem.isSelected = true
+			
+			// 响应式数据
+			Vue.set(shopItem, 'count', 1)
+			Vue.set(shopItem, 'isSelected', true)
 			state.cartList.push(shopItem)
 		}
 		
+	},
+	
+	// 修改数量
+	changeCountMutation(state, {isAdd, index}){
+		if(isAdd){
+			state.cartList[index].count += 1
+		}else {
+			
+			// 判断商品数量是否大于1
+			if(state.cartList[index].count > 1){
+				state.cartList[index].count -= 1
+			}else {
+				wx.showModal({
+					content: '你确认删除该商品吗',
+					success: (res) => {
+						if(res.confirm){
+							// 删除该商品
+							state.cartList.splice(index, 1)
+						}
+					}
+				})
+				
+			}
+		}
+		
+	},
+	// 修改是否选中状态
+	changeIsSelectedMutation(state, {isSelected, index}){
+		state.cartList[index].isSelected = isSelected
 	}
 }
 
