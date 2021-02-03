@@ -115,7 +115,9 @@
 				success: async (res) => {
 					let code = res.code
 					// 2. 将code发请求发送给服务器端
-					let result = await request('/getOpenId', {code})
+					let token = await request('/getOpenId', {code})
+					// 3. 将token存入至本地
+					wx.setStorageSync('token', token)
 				}
 			})
 		},

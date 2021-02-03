@@ -1,4 +1,5 @@
 const KoaRouter = require('koa-router');
+const jwt = require('jsonwebtoken');
 const Fly = require("flyio/src/node")
 const fly = new Fly;
 // 2. 生成路由器对象
@@ -45,7 +46,21 @@ router.get('/getOpenId', async (ctx) => {
 	let openId = JSON.parse(result.data).openid;
 	console.log('openId: ', openId);
 	// 4. 返回给浏览器端当前用户加密后的标识
+	let userInfo = {
+		openId,
+		usuername: 'curry',
+		age: 33
+	}
 	
+	// 4.1 对用户数据加密生成token
+	let token = jwt.sign(userInfo, 'atguigu');
+	// 4.2 反编译token字段
+	// result = jwt.verify(token) // secret or public key must be provided
+	// result = jwt.verify(token, 'xxx') // invalid signature
+	result = jwt.verify(token, 'atguigu') // invalid signature
+	console.log(result)
+	// 5. 返回加密之后的数据给浏览器端
+	ctx.body = token;
 });
 
 
