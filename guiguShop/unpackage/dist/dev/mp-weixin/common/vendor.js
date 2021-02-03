@@ -10617,6 +10617,10 @@ var mutations = {
   // 修改是否选中状态
   changeIsSelectedMutation: function changeIsSelectedMutation(state, _ref2) {var isSelected = _ref2.isSelected,index = _ref2.index;
     state.cartList[index].isSelected = isSelected;
+  },
+  // 全选/全不选
+  changeAllSelectedMutation: function changeAllSelectedMutation(state, isSelected) {
+    state.cartList.forEach(function (item) {return item.isSelected = isSelected;});
   } };
 
 
@@ -10624,8 +10628,30 @@ var actions = {};
 
 
 
-var getters = {};var _default =
+var getters = {
+  isAllSelected: function isAllSelected(state) {
+    /* 
+                                                	every:所有的元素都满足条件
+                                                	
+                                                	some: 只要有一个满足条件就为true
+                                                 */
+    return state.cartList.every(function (item) {return item.isSelected;});
+  },
 
+  // 总数量
+  totalCount: function totalCount(state) {
+    return state.cartList.reduce(function (pre, shopItem) {
+      return pre += shopItem.isSelected ? shopItem.count : 0;
+    }, 0);
+  },
+
+
+  // 总价格
+  totalPrice: function totalPrice(state) {
+    return state.cartList.reduce(function (pre, shopItem) {
+      return pre += shopItem.isSelected ? shopItem.count * shopItem.retailPrice : 0;
+    }, 0);
+  } };var _default =
 
 
 {

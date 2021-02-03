@@ -214,6 +214,10 @@ const mutations = {
 	// 修改是否选中状态
 	changeIsSelectedMutation(state, {isSelected, index}){
 		state.cartList[index].isSelected = isSelected
+	},
+	// 全选/全不选
+	changeAllSelectedMutation(state, isSelected){
+		state.cartList.forEach(item => item.isSelected = isSelected)
 	}
 }
 
@@ -222,7 +226,29 @@ const actions = {
 }
 
 const getters = {
+	isAllSelected(state){
+		/* 
+			every:所有的元素都满足条件
+			
+			some: 只要有一个满足条件就为true
+		 */
+		return state.cartList.every(item => item.isSelected)
+	},
 	
+	// 总数量
+	totalCount(state){
+		return state.cartList.reduce((pre, shopItem) => {
+			return pre += shopItem.isSelected?shopItem.count:0
+		}, 0)
+	},
+	
+	
+	// 总价格
+	totalPrice(state){
+		return state.cartList.reduce((pre, shopItem) => {
+			return pre += shopItem.isSelected?shopItem.count*shopItem.retailPrice:0
+		}, 0)
+	}
 }
 
 export default {

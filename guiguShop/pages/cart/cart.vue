@@ -33,10 +33,10 @@
 		</view>
 		<!-- 底部下单 -->
 		<view class="cartFooter">
-			<text class='iconfont icon-xuanzhong selected'></text>
-			<text class="allSelected">已选 1</text>
+			<text class='iconfont icon-xuanzhong ' :class="{selected: isAllSelected}" @click="changeAllSelected(!isAllSelected)"></text>
+			<text class="allSelected">已选 {{totalCount}}</text>
 			<view class="right">
-				<text class="totalPrice">合计: ￥111</text>
+				<text class="totalPrice">合计: ￥{{totalPrice}}</text>
 				<text class="preOrder">下单</text>
 			</view>
 		</view>
@@ -48,7 +48,7 @@
 </template>
 
 <script>
-	import {mapState, mapMutations} from  'vuex'
+	import {mapState, mapMutations, mapGetters} from  'vuex'
 	export default {
 		data() {
 			return {
@@ -58,12 +58,14 @@
 		computed: {
 			...mapState({
 				cartList: state => state.cart.cartList
-			})
+			}),
+			...mapGetters(['isAllSelected', 'totalCount', 'totalPrice'])
 		},
 		methods: {
 			...mapMutations({
 				changeCountMutation: 'changeCountMutation',
-				changeIsSelectedMutation: 'changeIsSelectedMutation'
+				changeIsSelectedMutation: 'changeIsSelectedMutation',
+				changeAllSelectedMutation: 'changeAllSelectedMutation'
 			}),
 			// 修改数量
 			changeCount(isAdd, index){
@@ -72,6 +74,10 @@
 			// 修改是否选中的状态
 			changeSelected(isSelected, index){
 				this.changeIsSelectedMutation({isSelected, index})
+			},
+			// 全选/全不选
+			changeAllSelected(isAllSelected){
+				this.changeAllSelectedMutation(isAllSelected)
 			}
 		}
 	}

@@ -181,13 +181,15 @@ var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {
   },
   computed: _objectSpread({},
   (0, _vuex.mapState)({
-    cartList: function cartList(state) {return state.cart.cartList;} })),
+    cartList: function cartList(state) {return state.cart.cartList;} }),
 
+  (0, _vuex.mapGetters)(['isAllSelected', 'totalCount', 'totalPrice'])),
 
   methods: _objectSpread({},
   (0, _vuex.mapMutations)({
     changeCountMutation: 'changeCountMutation',
-    changeIsSelectedMutation: 'changeIsSelectedMutation' }), {
+    changeIsSelectedMutation: 'changeIsSelectedMutation',
+    changeAllSelectedMutation: 'changeAllSelectedMutation' }), {
 
     // 修改数量
     changeCount: function changeCount(isAdd, index) {
@@ -196,6 +198,10 @@ var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {
     // 修改是否选中的状态
     changeSelected: function changeSelected(isSelected, index) {
       this.changeIsSelectedMutation({ isSelected: isSelected, index: index });
+    },
+    // 全选/全不选
+    changeAllSelected: function changeAllSelected(isAllSelected) {
+      this.changeAllSelectedMutation(isAllSelected);
     } }) };exports.default = _default;
 
 /***/ }),
